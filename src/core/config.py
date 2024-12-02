@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 from pydantic_settings import BaseSettings
-
+from pydantic import PostgresDsn
 
 class RunConfig(BaseModel):
     host: str = '0.0.0.0'
@@ -8,7 +8,11 @@ class RunConfig(BaseModel):
 
 
 class DBConfig(BaseModel):
-    db_url: str
+    url: PostgresDsn
+    echo: bool = False
+    echo_pool: bool = False
+    pool_size: int = 5
+    max_overflow: int = 10
 
 
 class PrefixConfig(BaseModel):
@@ -18,7 +22,7 @@ class PrefixConfig(BaseModel):
 class Settings(BaseSettings):
     run: RunConfig = RunConfig()
     prefix: PrefixConfig = PrefixConfig()
-    DB: DBConfig = DBConfig()
+    db: DBConfig = DBConfig()
 
 
 settings = Settings()
