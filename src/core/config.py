@@ -1,6 +1,7 @@
 from pydantic import BaseModel
-from pydantic_settings import BaseSettings
+from pydantic_settings import BaseSettings, SettingsConfigDict
 from pydantic import PostgresDsn
+
 
 class RunConfig(BaseModel):
     host: str = '0.0.0.0'
@@ -20,9 +21,15 @@ class PrefixConfig(BaseModel):
 
 
 class Settings(BaseSettings):
+    model_config = SettingsConfigDict(
+        case_sensitive=False,
+        env_nested_delimiter='__',
+        env_prefix="FASTAPI_CONFIG__",
+        env_file='.env'
+    )
     run: RunConfig = RunConfig()
     prefix: PrefixConfig = PrefixConfig()
-    db: DBConfig = DBConfig()
+    db: DBConfig
 
 
 settings = Settings()
