@@ -12,8 +12,8 @@ class DBConfig(BaseModel):
     url: PostgresDsn
     echo: bool = False
     echo_pool: bool = False
-    pool_size: int = 5
-    max_overflow: int = 10
+    pool_size: int = 50
+    max_overflow: int = 100
 
 
 class PrefixConfig(BaseModel):
