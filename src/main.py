@@ -2,10 +2,11 @@ from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 import uvicorn
-from api import api_router
+from api import api_router, auth_backend
 from core.config import settings
 from core.models import db_helper
 from fastapi.responses import ORJSONResponse
+from api.auth_base_config import fastapi_users
 
 
 @asynccontextmanager
@@ -24,6 +25,8 @@ app = FastAPI(
 app.include_router(
     api_router,
     prefix=settings.prefix.api)
+
+
 
 if __name__ == '__main__':
     uvicorn.run("main:app",
