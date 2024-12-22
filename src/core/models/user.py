@@ -1,10 +1,6 @@
-from collections.abc import AsyncGenerator
 from typing import TYPE_CHECKING
-
-from fastapi import Depends
-from fastapi_users.db import SQLAlchemyUserDatabase
-from fastapi_users_db_sqlalchemy import SQLAlchemyBaseUserTable
-
+from fastapi_users_db_sqlalchemy import (SQLAlchemyBaseUserTable,
+                                         SQLAlchemyUserDatabase)
 from core.models import Base
 from core.models.mixins.ID_intpk_mixin import IDIntPKMixin
 from core.types.user_id import UserIdType
