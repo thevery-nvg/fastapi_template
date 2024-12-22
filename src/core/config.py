@@ -27,6 +27,10 @@ class PrefixConfig(BaseModel):
     api: str = '/api'
 
 
+class AccessToken(BaseModel):
+    lifetime_seconds: int = 3600
+
+
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(
         case_sensitive=False,
@@ -37,6 +41,7 @@ class Settings(BaseSettings):
     run: RunConfig = RunConfig()
     prefix: PrefixConfig = PrefixConfig()
     db: DBConfig
+    access_token: AccessToken = AccessToken()
 
 
 settings = Settings()
