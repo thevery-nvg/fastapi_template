@@ -18,18 +18,4 @@ class Base(DeclarativeBase):
         return f"{camel_case_to_snake_case(cls.__name__)}s"
 
 
-class User(Base):
-    __tablename__ = "users"
-    id: Mapped[int] = mapped_column(primary_key=True)
-    username: Mapped[str] = mapped_column(nullable=False)
-    password: Mapped[str] = mapped_column(nullable=False)
-    email: Mapped[str] = mapped_column(nullable=False)
-    is_active: Mapped[bool] = mapped_column(nullable=False)
-    is_admin: Mapped[bool] = mapped_column(nullable=False)
-    is_superuser: Mapped[bool] = mapped_column(nullable=False)
 
-
-async def get_all_users(session: AsyncSession):
-    stmt = select(User).order_by(User.id)
-    result = await session.scalars(stmt)
-    return result.all()
