@@ -4,11 +4,11 @@ from typing import TYPE_CHECKING
 from fastapi import Depends
 from fastapi_users.authentication.strategy.db import AccessTokenDatabase, DatabaseStrategy
 
-from api.dependencies.access_tokens import get_access_tokens_db
+from .dependencies.access_tokens import get_access_tokens_db
 from core.config import settings
 
 if TYPE_CHECKING:
-    from core.models import AccessToken
+    from .models import AccessToken
 
 
 def get_database_strategy(
