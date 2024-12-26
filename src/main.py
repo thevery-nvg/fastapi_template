@@ -4,7 +4,7 @@ from fastapi.responses import RedirectResponse, HTMLResponse
 
 import uvicorn
 
-from admin import UserAdmin, authentication_backend
+
 from core.config import settings
 from core.models import db_helper
 from fastapi.responses import ORJSONResponse
@@ -16,7 +16,7 @@ from fastapi.templating import Jinja2Templates
 
 
 from sqladmin import Admin
-
+from auth.admin import UserAdmin, authentication_backend
 
 @asynccontextmanager
 async def lifespan(application: FastAPI):

@@ -4,7 +4,7 @@ from pydantic import PostgresDsn
 
 
 class RunConfig(BaseModel):
-    host: str = '127.0.0.1'
+    host: str = "127.0.0.1"
     port: int = 8000
 
 
@@ -19,12 +19,17 @@ class DBConfig(BaseModel):
         "uq": "uq_%(table_name)s_%(column_0_N_name)s",
         "ck": "ck_%(table_name)s_%(constraint_name)s",
         "fk": "fk_%(table_name)s_%(column_0_name)s_%(referred_table_name)s",
-        "pk": "pk_%(table_name)s"
+        "pk": "pk_%(table_name)s",
     }
 
 
 class PrefixConfig(BaseModel):
-    api: str = '/api'
+    api: str = "/api"
+
+
+class Admin(BaseModel):
+    username: str
+    password: str
 
 
 class AccessToken(BaseModel):
@@ -36,14 +41,15 @@ class AccessToken(BaseModel):
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(
         case_sensitive=False,
-        env_nested_delimiter='__',
+        env_nested_delimiter="__",
         env_prefix="FASTAPI_CONFIG__",
-        env_file=('.env.template', '.env')
+        env_file=(".env.template", ".env"),
     )
     run: RunConfig = RunConfig()
     prefix: PrefixConfig = PrefixConfig()
     db: DBConfig
     access_token: AccessToken = AccessToken()
+    admin: Admin
 
 
 settings = Settings()
