@@ -27,7 +27,7 @@ class AdminAuth(AuthenticationBackend):
         if hashed_password == settings.admin.password:
             request.session.update(
                 {
-                    "token": "b6f2211f8f41a5b58cc13c7a2d05df192b1606c68df7b23907d4ed49bda69d60a28a10ad33e7feea55fc444988b85dec34c7eda8133e6cb4b86b8afda40792f0"
+                    "token": settings.admin.token,
                 }
             )
             return True
@@ -49,5 +49,5 @@ class AdminAuth(AuthenticationBackend):
 
 
 authentication_backend = AdminAuth(
-    secret_key="a952b3858b0f55efc06945939bbd3b9136c7cc78989234ab4c8c64f3b45988fb2e9b6a1f23e41da540b8f6ca44ef68709c0dadcd268bc1919809b777b59acfa4"
+    secret_key=settings.admin.secret
 )
