@@ -4,20 +4,19 @@ from fastapi.responses import RedirectResponse, HTMLResponse
 
 import uvicorn
 
-
 from core.config import settings
 from core.models import db_helper
 from fastapi.responses import ORJSONResponse
 from auth import auth_router, users_router
 
-
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
-
 
 from sqladmin import Admin
 from auth.admin import UserAdmin, authentication_backend
 from auth.users_proxy import fastapi_users_proxy_router
+
+
 @asynccontextmanager
 async def lifespan(application: FastAPI):
     # startup
@@ -43,6 +42,8 @@ templates = Jinja2Templates(directory="templates")
 admin = Admin(app=app, authentication_backend=authentication_backend,
               session_maker=db_helper.session_factory)
 admin.add_view(UserAdmin)
+
+
 # admin--------------
 
 

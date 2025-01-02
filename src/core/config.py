@@ -38,6 +38,11 @@ class AccessToken(BaseModel):
     lifetime_seconds: int = 3600
     reset_password_token_secret: str = "sdsdfaadfnjk;lltxcvbtipwwgifgiojn"
     verification_token_secret: str = "alsfjadfgdddkklofvghnsfdgadfgadfgogn"
+    jwt_secret: str = "alsfjadfgdddkklofvghnsfdgadfgadfgogn"
+
+
+class JWT(BaseModel):
+    secret: str = "alsfjadfgdddkklofvghnsfdgadfgadfgogn"
 
 
 class Settings(BaseSettings):
@@ -52,6 +57,7 @@ class Settings(BaseSettings):
     db: DBConfig
     access_token: AccessToken = AccessToken()
     admin: Admin
+    jwt: JWT = JWT()
 
 
 settings = Settings()
