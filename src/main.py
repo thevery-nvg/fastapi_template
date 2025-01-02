@@ -1,13 +1,14 @@
 from contextlib import asynccontextmanager
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, Request, Depends
 from fastapi.responses import RedirectResponse, HTMLResponse
 
 import uvicorn
 
+from auth.models import User
 from core.config import settings
 from core.models import db_helper
 from fastapi.responses import ORJSONResponse
-from auth import auth_router, users_router
+from auth import auth_router, users_router, current_user
 
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
@@ -54,7 +55,7 @@ async def custom_404_handler(_, __):
 
 @app.get("/", response_class=HTMLResponse)
 async def read_root(request: Request):
-    return templates.TemplateResponse("index.html", {"request": request, "xxx": "Вход"})
+    return templates.TemplateResponse("index.html", {"request": request})
 
 
 if __name__ == "__main__":
