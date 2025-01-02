@@ -1,13 +1,45 @@
+<style>
+    .btn {
+ width: 130px;
+ height: 40px;
+ font-size: 1.1em;
+ cursor: pointer;
+ background-color: #171717;
+ color: #fff;
+ border: none;
+ border-radius: 5px;
+ transition: all .4s;
+}
+
+.btn:hover {
+ border-radius: 5px;
+ transform: translateY(-10px);
+ box-shadow: 0 7px 0 -2px #f85959,
+  0 15px 0 -4px #39a2db,
+  0 16px 10px -3px #39a2db;
+}
+
+.btn:active {
+ transition: all 0.2s;
+ transform: translateY(-5px);
+ box-shadow: 0 2px 0 -2px #f85959,
+  0 8px 0 -4px #39a2db,
+  0 12px 10px -3px #39a2db;
+}
+
+
+</style>
+
 <div class="input-section">
     <h2>Введите данные</h2>
     <textarea id="input" placeholder="Введите данные для геокодирования" required></textarea>
-    <button onclick="sendData()" class="glow-on-hover">raw data</button>
-    <button onclick="sendData_google()" class="glow-on-hover">google earth</button>
-    <button id="downloadButton" class="glow-on-hover" onclick="downloadData()">gpx</button>
-    <button id="loadPlotBtn" onclick="call_autocad()" class="glow-on-hover">build
+    <button onclick="sendData()" class="btn">raw data</button>
+    <button onclick="sendData_google()" class="btn">google</button>
+    <button id="downloadButton" class="btn" onclick="downloadData()">gpx</button>
+    <button id="loadPlotBtn" onclick="call_autocad()" class="btn">build
     </button>
     <p></p>
-    <img id="plotImage" src="" alt="" />
+    <img id="plotImage" src="" alt=""/>
     <input type="hidden" id="hiddenField" name="hiddenData">
 </div>
 <div class="output-section">
