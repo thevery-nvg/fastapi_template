@@ -30,8 +30,8 @@ class PrefixConfig(BaseModel):
 class Admin(BaseModel):
     username: str
     password: str
-    token:str
-    secret:str
+    token: str
+    secret: str
 
 
 class AccessToken(BaseModel):

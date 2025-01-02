@@ -17,7 +17,7 @@ from fastapi.templating import Jinja2Templates
 
 from sqladmin import Admin
 from auth.admin import UserAdmin, authentication_backend
-
+from auth.users_proxy import fastapi_users_proxy_router
 @asynccontextmanager
 async def lifespan(application: FastAPI):
     # startup
@@ -34,6 +34,7 @@ app = FastAPI(
 
 app.include_router(auth_router, prefix=settings.prefix.api)
 app.include_router(users_router, prefix=settings.prefix.api)
+app.include_router(fastapi_users_proxy_router)
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="templates")

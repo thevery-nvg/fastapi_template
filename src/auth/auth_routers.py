@@ -7,7 +7,6 @@ from .user_manager import get_user_manager
 from .models import User
 
 from fastapi import APIRouter, Depends
-
 fastapi_users = FastAPIUsers[User, int](
     get_user_manager,
     [auth_backend],
