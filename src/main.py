@@ -49,8 +49,8 @@ admin.add_view(UserAdmin)
 
 
 @app.exception_handler(404)
-async def custom_404_handler(_, __):
-    return RedirectResponse("/")
+async def custom_404_handler(request: Request,_):
+    return templates.TemplateResponse("404.html", {"request": request})
 
 
 @app.get("/", response_class=HTMLResponse)
