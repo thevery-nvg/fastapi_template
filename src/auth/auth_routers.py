@@ -7,6 +7,7 @@ from .user_manager import get_user_manager
 from .models import User
 
 from fastapi import APIRouter, Depends
+
 fastapi_users = FastAPIUsers[User, int](
     get_user_manager,
     [auth_backend],
@@ -25,10 +26,12 @@ auth_router.include_router(
 )
 # \register
 auth_router.include_router(
-    fastapi_users.get_register_router(UserRead, UserCreate),
+    fastapi_users.get_register_router(UserRead, UserCreate), tags=["Register"],
 )
 # \reset-password \forgot-password
-auth_router.include_router(fastapi_users.get_reset_password_router())
+auth_router.include_router(
+    fastapi_users.get_reset_password_router(),
+    tags=["Reset Password"], )
 # \verify \request-verify-token
 auth_router.include_router(
     fastapi_users.get_verify_router(UserRead),
