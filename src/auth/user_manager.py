@@ -17,7 +17,7 @@ if TYPE_CHECKING:
 
 
 class UserManager(IntegerIDMixin, BaseUserManager[User, int]):
-    """All the ште-based User management logic..."""
+    """All the int-based User management logic..."""
 
     reset_password_token_secret = settings.access_token.reset_password_token_secret
     verification_token_secret = settings.access_token.verification_token_secret

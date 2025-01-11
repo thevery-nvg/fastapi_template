@@ -4,7 +4,7 @@ from os import getenv
 
 from .dependencies import get_users_db
 from .user_manager import UserManager,get_user_manager
-from core.models import db_helper
+from core.models import db_manager
 from .models import User
 from .schemas import UserCreate
 
@@ -49,7 +49,7 @@ async def create_superuser(
         is_superuser=is_superuser,
         is_verified=is_verified,
     )
-    async with db_helper.session_factory() as session:
+    async with db_manager.session_factory() as session:
         async with get_users_db_context(session) as users_db:
             async with get_user_manager_context(users_db) as user_manager:
                 return await create_user(

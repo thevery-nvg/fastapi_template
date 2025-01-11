@@ -3,7 +3,7 @@ from sqlalchemy.ext.asyncio import create_async_engine, AsyncEngine, async_sessi
 from core.config import settings
 
 
-class DatabaseHelper:
+class DatabaseManager:
     def __init__(
             self,
             url: str,
@@ -29,12 +29,12 @@ class DatabaseHelper:
     async def dispose(self):
         await self.engine.dispose()
 
-    async def session_getter(self):
+    async def get_async_session(self):
         async with self.session_factory() as session:
             yield session
 
 
-db_helper = DatabaseHelper(
+db_manager = DatabaseManager(
     url=str(settings.db.url),
     echo=settings.db.echo,
     echo_pool=settings.db.echo_pool,

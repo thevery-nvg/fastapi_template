@@ -4,9 +4,9 @@ from fastapi.responses import RedirectResponse, HTMLResponse
 
 import uvicorn
 
-from auth.models import User
+
 from core.config import settings
-from core.models import db_helper
+from core.models import db_manager
 from fastapi.responses import ORJSONResponse
 from auth import auth_router, users_router, current_user
 
@@ -24,7 +24,7 @@ async def lifespan(application: FastAPI):
 
     # shutdown
     yield
-    await db_helper.dispose()
+    await db_manager.dispose()
 
 
 app = FastAPI(
@@ -41,7 +41,7 @@ templates = Jinja2Templates(directory="templates")
 
 # admin--------------
 admin = Admin(app=app, authentication_backend=authentication_backend,
-              session_maker=db_helper.session_factory)
+              session_maker=db_manager.session_factory)
 admin.add_view(UserAdmin)
 
 

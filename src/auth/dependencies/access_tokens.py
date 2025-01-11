@@ -2,7 +2,7 @@ from typing import TYPE_CHECKING
 
 from fastapi import Depends
 
-from core.models import db_helper
+from core.models import db_manager
 from auth.models import AccessToken
 
 if TYPE_CHECKING:
@@ -10,5 +10,5 @@ if TYPE_CHECKING:
 
 
 async def get_access_tokens_db(
-        session: "AsyncSession" = Depends(db_helper.session_getter)):
+        session: "AsyncSession" = Depends(db_manager.get_async_session)):
     yield AccessToken.get_db(session=session)

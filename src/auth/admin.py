@@ -34,7 +34,6 @@ class AdminAuth(AuthenticationBackend):
         return False
 
     async def logout(self, request: Request) -> bool:
-        # Usually you'd want to just clear the session
         request.session.clear()
         return True
 
